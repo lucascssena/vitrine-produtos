@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 390" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1"><stop offset="0" stop-color="#14100d"/><stop offset=".55" stop-color="#0a0d1c"/><stop offset="1" stop-color="#0b1840"/></linearGradient>
+    <radialGradient id="halo" cx=".75" cy=".5" r=".45"><stop offset="0" stop-color="#2a5cff" stop-opacity=".45"/><stop offset="1" stop-color="#2a5cff" stop-opacity="0"/></radialGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="7" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <rect width="1440" height="390" fill="url(#bg)"/>
+  <rect width="1440" height="390" fill="url(#halo)"/>
+  <g font-family="Arial Narrow, Arial, sans-serif" text-anchor="middle" filter="url(#glow)">
+    <g id="sign">
+      <rect x="860" y="85" width="330" height="205" rx="6" fill="none" stroke="#3b6bff" stroke-width="6"/>
+      <text x="1025" y="170" font-size="84" fill="#5b8cff" stroke="#9db8ff" stroke-width="1.500">BLACK</text>
+      <text x="1025" y="262" font-size="84" fill="#dce8ff" stroke="#ffffff" stroke-width="1.500">FRIDAY</text>
+    </g>
+    <use href="#sign" x="400" y="14"/>
+  </g>
+</svg>

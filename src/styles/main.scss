@@ -1,0 +1,198 @@
+// Tokens estimados a partir dos prints do Figma — conferir no Dev Mode
+$blue: #2f2fb5; // cor do header/categorias nos prints
+$primary: #2f44ff; // trocar aqui se a cor oficial for outra (prints anteriores eram azul #3a3fb5)
+$yellow: #fccf0a;
+$blue: #2f2fc0; // detalhes azuis do header e categorias
+$navy: #2a1f4f;
+$text: #333;
+$muted: #888;
+$border: #e5e5e5;
+$bg-soft: #f7f7f7;
+$radius: 6px;
+$bp-md: 768px;
+$bp-lg: 1024px;
+
+@mixin md { @media (min-width: $bp-md) { @content; } }
+@mixin lg { @media (min-width: $bp-lg) { @content; } }
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+ul { list-style: none; }
+a { color: inherit; text-decoration: none; }
+body { font-family: 'Poppins', sans-serif; color: $text; background: #fff; font-size: 14px; }
+button, input { font: inherit; }
+:focus-visible { outline: 3px solid $primary; outline-offset: 2px; }
+.container { max-width: 1440px; margin: 0 auto; padding: 0 5.5%; }
+
+.section-title {
+  display: flex; align-items: center; gap: 1.5rem; justify-content: center;
+  color: $primary; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700; margin: 3rem 0 1rem;
+  &::before, &::after { content: ''; flex: 1; height: 1px; background: $border; }
+}
+
+.logo { font-weight: 700; font-size: 1.5rem; color: #1a1a2e;
+  &__dot { background: $yellow; border-radius: 50%; padding: .1rem .3rem; margin-right: 1px; } }
+
+.btn {
+  display: inline-block; border: 0; border-radius: 4px; padding: .6rem 1.5rem;
+  font-weight: 600; font-size: .75rem; text-transform: uppercase; cursor: pointer; transition: filter .2s;
+  &:hover { filter: brightness(.92); }
+  &--yellow { background: $yellow; color: $navy; }
+  &--blue { background: $primary; color: #fff; width: 100%; }
+}
+
+// Header
+.topbar { display: flex; justify-content: center; gap: clamp(1rem, 4vw, 3rem); padding: .5rem 1rem;
+  font-size: .6875rem; color: #777; flex-wrap: wrap;
+  li { display: flex; align-items: center; gap: .4rem; } strong { color: $blue; font-weight: 600; } }
+.header {
+  &__main { display: flex; align-items: center; gap: 1.5rem; padding-top: .75rem; padding-bottom: .75rem; }
+  &__icons { display: flex; gap: 1rem; margin-left: auto;
+    button { background: none; border: 0; color: #555; cursor: pointer; display: grid; place-items: center; } }
+  .logo { font-size: 2rem; }
+}
+.search { flex: 1; max-width: 630px; margin: 0 auto; position: relative;
+  input { width: 100%; height: 52px; padding: 0 3rem 0 1.25rem; border: 0; border-radius: 6px; background: #f1efe9; font-size: .8125rem; }
+  button { position: absolute; right: 1rem; top: 50%; transform: translateY(-50%); background: none; border: 0; color: #777; cursor: pointer; } }
+.nav { display: none; background: #fff; border-radius: 6px; box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+  @include md { display: block; }
+  ul { display: flex; justify-content: space-between; padding: .9rem 2.5rem; }
+  a { display: flex; align-items: center; gap: .4rem; font-size: .6875rem; font-weight: 500; text-transform: uppercase; color: #666; }
+  .is-highlight a { color: $blue; font-weight: 700; } }
+
+// Hero
+.hero {
+  min-height: clamp(260px, 27vw, 390px); display: flex; align-items: center; margin-top: 1rem; color: #fff;
+  background: linear-gradient(90deg, rgba(0, 0, 0, .35) 30%, rgba(0, 0, 0, 0) 60%),
+    url('/images/banner.jpg') center / cover no-repeat, linear-gradient(90deg, #0d0d1c 40%, #1e46c8 100%);
+  &__content { max-width: 1280px; width: 100%; margin: 0 auto; padding: 2rem 1rem; }
+  h1 { font-size: clamp(1.75rem, 3.4vw, 3rem); font-weight: 600; max-width: 12em; line-height: 1.15; }
+  p { margin: 1rem 0 1.75rem; font-size: clamp(1rem, 1.6vw, 1.5rem); strong { color: $yellow; font-weight: 700; } }
+  .btn { padding: 1rem 3rem; border-radius: 4px; }
+}
+
+// Categories
+.categories {
+  display: flex; gap: 1.5rem; overflow-x: auto; padding: 2.5rem .5rem 1.5rem; justify-content: flex-start;
+  @include lg { justify-content: space-between; max-width: 1170px; margin: 0 auto; }
+  &__btn { background: none; border: 0; display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    cursor: pointer; font-size: .75rem; color: #333;
+    &.is-active { color: $blue; .categories__name { font-weight: 700; } } }
+  &__icon { width: clamp(80px, 9vw, 130px); aspect-ratio: 1; display: grid; place-items: center; color: #222;
+    background: #f5f5f5; border-radius: 6px; box-shadow: 0 3px 8px rgba(0, 0, 0, .1); }
+  &__icon svg { width: 74%; height: 74%; }
+  &__btn.is-active &__icon { background: #fff; color: $blue; box-shadow: 0 4px 12px rgba(0, 0, 0, .15); }
+}
+
+// Products
+.tabs { display: flex; overflow-x: auto; border: 1px solid #ccc; margin-bottom: 1.5rem;
+  &__tab { flex: 1; background: none; border: 0; border-right: 1px solid $border; padding: .7rem 1rem;
+    font-size: .875rem; color: #333; text-transform: uppercase; cursor: pointer; white-space: nowrap;
+    &:last-child { border-right: 0; }
+    &.is-active { font-weight: 700; color: $primary; } } }
+.products__all { display: block; text-align: center; font-size: .625rem; font-weight: 600; margin-bottom: 1.5rem; }
+
+.carousel { display: flex; align-items: center; gap: .5rem;
+  @include lg { margin: 0 -2rem; }
+  &__track { display: flex; gap: 1.5rem; overflow-x: auto; scroll-snap-type: x mandatory; padding: .5rem .25rem 1rem; flex: 1;
+    scrollbar-width: none; &::-webkit-scrollbar { display: none; }
+    li { flex: 0 0 75%; scroll-snap-align: start; @include md { flex-basis: calc(25% - .75rem); } } }
+  &__arrow { background: none; border: 0; color: #333; font-size: 3rem; line-height: 1; cursor: pointer; flex: none; padding: 0 .25rem; } }
+
+// Procure a classe .card e substitua os elementos internos por estes:
+// Procure a classe .card e substitua os elementos internos por estes:
+.card {
+  height: 100%; 
+  display: flex; 
+  flex-direction: column; 
+  gap: .35rem; 
+  padding: 1rem;
+  background: #fff; 
+  border-radius: $radius; 
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .12);
+
+  &__img { width: 100%; aspect-ratio: 1; object-fit: contain; }
+  &__title { font-size: .875rem; font-weight: 400; color: #444; flex: 1; margin-top: .5rem; }
+  
+  // PREÇO ANTIGO RISCADO (Como na imagem do Figma)
+  &__old { 
+    font-size: .875rem; 
+    color: $muted; 
+    margin-top: .5rem; 
+    text-decoration: line-through; /* Aplica o risco no valor antigo */
+  }
+  
+  &__price { font-weight: 700; font-size: 1.25rem; color: #1a1a2e; }
+  &__installments { font-size: .75rem; color: #444; }
+  &__shipping { font-size: .75rem; color: $primary; margin-bottom: .75rem; }
+
+  // ESTILO DO BOTÃO COMPRAR DENTRO DO CARD (Igual ao Figma)
+  button, .btn {
+    width: 100% !important;         /* Ocupa a largura inteira do card */
+    background-color: $blue !important; /* Aplica a variável azul do seu projeto */
+    color: #ffffff !important;      /* Texto totalmente branco */
+    border: none !important;        /* Remove a borda cinza padrão */
+    border-radius: 4px;             /* Cantos suavizados */
+    padding: .8rem 1.5rem;          /* Espaçamento interno ideal para clique */
+    font-weight: 700;               /* Texto em negrito marcante */
+    text-transform: uppercase;      /* Letras maiúsculas */
+    cursor: pointer;
+    transition: filter .2s ease;
+
+    &:hover {
+      filter: brightness(.9);      /* Efeito sutil ao passar o mouse */
+    }
+  }
+}
+
+
+
+// Partners
+.partners { display: grid; gap: 1rem; margin-top: 3rem;
+  @include md { grid-template-columns: 1fr 1fr; }
+  &__item { aspect-ratio: 337 / 182; padding: 1.5rem 1.25rem; border-radius: 12px; color: #fff;
+    display: flex; flex-direction: column; justify-content: flex-end; align-items: flex-start; gap: .75rem;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .35)), url('/images/partners.jpg') center / cover no-repeat, #3a2a1a;
+    h2 { font-size: 2rem; } p { font-size: .75rem; } } }
+
+// Brands
+.brands { display: flex; gap: 1.5rem; overflow-x: auto; padding: 1rem .5rem 2rem; justify-content: flex-start;
+  @include lg { justify-content: center; }
+  &__item { flex: none; width: 140px; height: 140px; border-radius: 50%; display: grid; place-items: center;
+    background: #fff; box-shadow: 0 4px 12px rgba(0, 0, 0, .12); } }
+
+// Newsletter
+.newsletter { background: $navy; color: #fff; margin-top: 3rem; padding: 2rem 0;
+  &__inner { display: grid; gap: 1.5rem; align-items: center; @include lg { grid-template-columns: 1fr 1.2fr; } }
+  h2 { font-size: 1.25rem; } p { font-size: .625rem; margin-top: .25rem; }
+  form { display: flex; flex-wrap: wrap; gap: .5rem;
+    input[type='text'], input[type='email'] { flex: 1; min-width: 140px; padding: .5rem; border: 0; border-radius: 4px; }
+    label { flex-basis: 100%; font-size: .625rem; } } }
+
+// Footer
+.footer { background: $bg-soft; padding-top: 2rem;
+  &__inner { display: grid; gap: 1.5rem; grid-template-columns: 1fr 1fr; @include md { grid-template-columns: 1.4fr 1fr 1fr 1fr; } }
+  h3 { font-size: .75rem; margin-bottom: .75rem; }
+  li { font-size: .6875rem; color: $muted; margin-bottom: .4rem; }
+  p { font-size: .6875rem; margin-top: .75rem; }
+  &__copy { text-align: center; padding: 1.5rem 0; } }
+
+// Modal
+.overlay { position: fixed; inset: 0; background: rgba(0, 0, 0, .6); display: grid; place-items: center; padding: 1rem; z-index: 10; }
+.modal {
+  position: relative; background: #fff; border-radius: $radius; width: 100%; max-width: 640px;
+  max-height: 90vh; overflow: auto; display: grid; gap: 1.5rem; padding: 2rem;
+  @include md { grid-template-columns: 1fr 1.2fr; align-items: center; }
+  &__img { width: 100%; object-fit: contain; }
+  &__body { display: flex; flex-direction: column; gap: .5rem; }
+  h2 { font-size: .875rem; font-weight: 600; text-transform: uppercase; }
+  &__price { font-weight: 600; font-size: 1.125rem; }
+  &__desc { font-size: .625rem; color: $muted; }
+  &__link { font-size: .625rem; font-weight: 600; color: $primary; }
+  &__actions { display: flex; gap: .75rem; margin-top: .75rem; align-items: center; }
+  &__close { position: absolute; top: .5rem; right: .75rem; background: none; border: 0; font-size: 1.5rem; cursor: pointer; }
+}
+.qty { display: flex; align-items: center; border: 1px solid $border; border-radius: 4px;
+  button { background: none; border: 0; padding: .35rem .6rem; cursor: pointer; }
+  output { min-width: 1.5rem; text-align: center; } }
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
